@@ -1,68 +1,12 @@
 import random
 import hangman_words
+import hangman_pics
 
 def hangman() -> None:
-    print(r"""                                                           
-,--.  ,--.                                                  
-|  '--'  | ,--,--.,--,--,  ,---. ,--,--,--. ,--,--.,--,--,  
-|  .--.  |' ,-.  ||      \| .-. ||        |' ,-.  ||      \ 
-|  |  |  |\ '-'  ||  ||  |' '-' '|  |  |  |\ '-'  ||  ||  | 
-`--'  `--' `--`--'`--''--'.`-  / `--`--`--' `--`--'`--''--' 
-                          `---'                                                 
-          """)
-    hangmanpics = ['''
-  +---+
-  |   |
-      |
-      |
-      |
-      |
-=========''', '''
-  +---+
-  |   |
-  O   |
-      |
-      |
-      |
-=========''', '''
-  +---+
-  |   |
-  O   |
-  |   |
-      |
-      |
-=========''', '''
-  +---+
-  |   |
-  O   |
- /|   |
-      |
-      |
-=========''', '''
-  +---+
-  |   |
-  O   |
- /|\  |
-      |
-      |
-=========''', '''
-  +---+
-  |   |
-  O   |
- /|\  |
- /    |
-      |
-=========''', '''
-  +---+
-  |   |
-  O   |
- /|\  |
- / \  |
-      |
-=========''']
-
-    #word_list = ["destination", "interesting", "camouflage", "chocolate", "wonderland"]
-    word = random.choice(hangmanwords.word_list)
+    print(hangman_pics.logo)
+    hangmanpics = hangman_pics.hangmanpics
+    
+    word = random.choice(hangman_words.word_list)
     correct_guessing = ["-"] * len(word)
     lives = 7
 

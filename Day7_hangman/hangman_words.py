@@ -1,0 +1,21 @@
+word_list = [
+    "destination", "interesting", "camouflage", "chocolate", "wonderland",
+    "adventure", "bicycle", "computer", "elephant", "umbrella",
+    "mountain", "notebook", "puzzle", "rainbow", "library",
+    "sunshine", "galaxy", "penguin", "dolphin", "volcano",
+    "airplane", "backpack", "calendar", "diamond", "festival",
+    "happiness", "keyboard", "language", "magnet", "ocean",
+    "painting", "question", "robotics", "sandwich", "treasure",
+    "universe", "victory", "whisper", "xylophone", "yesterday",
+    "zebra", "fireworks", "journey", "kitchen", "lighthouse",
+    "butterfly", "coconut", "database", "earthquake", "flamingo",
+    "grapefruit", "helicopter", "island", "jungle", "kangaroo",
+    "lemonade", "microscope", "nightmare", "octopus", "piano",
+    "quarantine", "rocket", "strawberry", "telescope", "underwater",
+    "violin", "waterfall", "xenon", "yogurt", "zeppelin",
+    "archaeology", "blackboard", "constellation", "discovery", "envelope",
+    "framework", "generation", "helicopter", "ingredient", "jellyfish",
+    "knowledge", "landscape", "motorcycle", "navigation", "operation",
+    "parachute", "quarter", "reflection", "symphony", "technology",
+    "vacation", "wildlife", "algorithm", "breakfast", "chemistry"
+]
