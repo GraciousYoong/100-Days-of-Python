@@ -1,56 +1,68 @@
 import random
 import blackjack_pics
+import os
+
+def clear_screen():
+    os.system("cls" if os.name == "nt" else "clear")
 
 def pull_card() -> int:
-    return random.randint(1, 10)
+    cards = [11, 2, 3, 4, 5, 6, 7 , 8, 9, 10, 10, 10, 10]
+    return random.choice(cards)
 
-def blackjack() -> None:
-    print(blackjack_pics.logo)
-    your_cards = []
-    your_cards.append(pull_card())
-    your_cards.append(pull_card())
-    sum = 0
-    card_pulled = 0
-    should_continue = True
-    computer_continue = True
-    for card in your_cards:
-        sum += card
-    computer_cards = []
-    computer_first_card = pull_card()
-    computer_cards.append(computer_first_card)
-    computer_sum = computer_first_card
-    while should_continue == True:
-        print(f"    Your cards: {your_cards}, current score: {sum}")
-        print(f"    Computer first card: {computer_first_card}")
-        if input("Do you want to play a game of Blackjack? Type 'y' or 'n': ") == "y":
-            card_pulled = pull_card()
-            your_cards.append(card_pulled)
-            sum += card_pulled
-            if sum > 21:
-                should_continue = False
-                computer_continue = False
-        else:
-            should_continue = False
+def calculate_score(cards: list) -> int:
+    if sum(cards) == 21 and len(cards) == 2:
+        return 0
+    elif 11 in cards and sum(cards) > 21:
+        cards.remove(11)
+        cards.append(1)
+    return sum(cards)
 
-    while computer_continue == True:
-        if computer_sum > 21:
-            computer_continue = False
-        else:
-            card_pulled = pull_card()
-            computer_cards.append(card_pulled)
-            computer_sum += card_pulled
-            if computer_sum > 12:
-                if random.randint(0, 1) == 0:
-                    computer_continue = False
-
-    print(f"    Your final hand: {your_cards}, final score: {sum}")
-    print(f"    Computer final hand: {computer_cards}, final score: {computer_sum}")
-    if sum > 21:
-        print("You went over. You lose")
-    elif sum <= 21 and sum > computer_sum or computer_sum > 21:
-        print("You win!")
+def compare(user_score: int, computer_score:int) -> str:
+    if user_score > 21:
+        return "You went over 21. You busted. You lose 😵"
+    elif computer_score > 21:
+        return "Computer busted. You win 🎉"
+    elif user_score == computer_score:
+        return "It's a draw 🤝"
+    elif computer_score == 0:
+        return "Computer has Blackjack. You lose 💀"
+    elif user_score == 0:
+        return "Blackjack! You win 🂡🔥"
+    elif user_score > computer_score:
+        return "You win 🎉 Your hand is stronger"
     else:
-        print("You lose!")
+        return "You lose 😢 Computer wins"
+    
+def blackjack() -> None:
+    clear_screen()
+    print(blackjack_pics.logo)
+    user_cards = []
+    computer_cards = []
+    card_pulled = 0
+    for _ in range(2):
+        user_cards.append(pull_card())
+        computer_cards.append(pull_card())
+    should_continue = True
+    computer_first_card = computer_cards[0]
+    while should_continue == True:
+        user_score = calculate_score(user_cards)
+        computer_score = calculate_score(computer_cards)
+        if user_score == 0 or computer_score == 0 or user_score > 21:
+            should_continue = False
+        else:
+            print(f"    Your cards: {user_cards}, current score: {calculate_score(user_cards)}")
+            print(f"    Computer first card: {computer_first_card}")
+            if input("Do you want to play a game of Blackjack? Type 'y' or 'n': ") == "y":
+                card_pulled = pull_card()
+                user_cards.append(card_pulled)
+            else:
+                should_continue = False
+    while computer_score != 0 and computer_score < 17 :
+            computer_cards.append(pull_card())
+            computer_score = calculate_score(computer_cards)
+    print(f"    Your final hand: {user_cards}, final score: {calculate_score(user_cards)}")
+    print(f"    Computer final hand: {computer_cards}, final score: {calculate_score(computer_cards)}")
+    print(compare(user_score, computer_score))
     if input("Do you want to play a game of Blackjack? Type 'y' or 'n': ") == "y":
         blackjack()
 

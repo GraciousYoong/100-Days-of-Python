@@ -1,7 +1,8 @@
 import calc_pics
+import os
 
 def clear_screen():
-    print("\n" * 100)
+    os.system("cls" if os.name == "nt" else "clear")
 
 def add(first_num: float, second_num: float) -> float:
     return first_num + second_num
