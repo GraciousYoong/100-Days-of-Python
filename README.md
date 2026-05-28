@@ -40,19 +40,7 @@ cd 100-Days-of-Python
 Run a Python file using:
 
 ```bash
-python <file_name>.py
-```
-
-Example:
-
-```bash
-python Day1_band_name_generator.py
-```
-
-Another example:
-
-```bash
-python Day4_rock_paper_scissors.py
+python main.py
 ```
 
 ---
