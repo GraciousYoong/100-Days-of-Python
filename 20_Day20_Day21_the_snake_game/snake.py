@@ -1,7 +1,9 @@
 from turtle import Turtle
+import random
 
 STARTING_POS = [(0, 0), (-20, 0), (-40, 0)]
 MOVE_DISTANCE = 20
+COLORS = ["#E3DD34","#78496B","#A7E0E2"]
 UP = 90
 DOWN = 270
 LEFT = 180
@@ -12,6 +14,8 @@ class Snake:
         self.snake_segments = []
         self.create_snake()
         self.head = self.snake_segments[0]
+        self.head.shape("circle")
+        self.head.shapesize(stretch_wid=1.1, stretch_len=1.3)
 
     def create_snake(self):
         for position in STARTING_POS:
@@ -19,7 +23,7 @@ class Snake:
             
     def add_segment(self, position):
         new_snake_segment = Turtle("square")
-        new_snake_segment.color("white")
+        new_snake_segment.color(random.choice(COLORS))
         new_snake_segment.penup()
         new_snake_segment.goto(position)
         self.snake_segments.append(new_snake_segment)
@@ -33,6 +37,9 @@ class Snake:
             new_y = self.snake_segments[seg_num - 1].ycor()
             self.snake_segments[seg_num].goto(new_x, new_y)
         self.head.forward(MOVE_DISTANCE)
+
+    def change_color(self):
+        self.color(random.choice(COLORS))
     
     def up(self):
         if self.head.heading() != DOWN:
@@ -49,3 +56,13 @@ class Snake:
     def right(self):
         if self.head.heading() != LEFT:
             self.head.setheading(RIGHT)
+
+    def reset(self):
+        for segment in self.snake_segments:
+            segment.goto(1000, 1000)
+
+        self.snake_segments.clear()
+        self.create_snake()
+        self.head = self.snake_segments[0]
+        self.head.shape("circle")
+        self.head.shapesize(stretch_wid=1.1, stretch_len=1.3)
