@@ -2,7 +2,7 @@ from turtle import Turtle
 import random
 
 STARTING_POS = [(0, 0), (-20, 0), (-40, 0)]
-MOVE_DISTANCE = 10
+MOVE_DISTANCE = 20
 COLORS = ["#E3DD34","#78496B","#A7E0E2"]
 UP = 90
 DOWN = 270
