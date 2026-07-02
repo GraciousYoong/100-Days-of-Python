@@ -13,7 +13,7 @@ screen.tracer(0)
 
 STARTING_SPEED = 0.1        # seconds between moves (smaller = faster)
 SPEED_UP_FACTOR = 0.9       # speed factor for hard mode (0.9 = 10% faster)
-MIN_SPEED = 0.03            # top speed (smaller = faster)
+TOP_SPEED = 0.03            # top speed (smaller = faster)
 
 # Difficulty selection menu
 menu = Menu()
@@ -72,7 +72,7 @@ while True:
             scoreboard.score_increase()
 
             if difficulty == "hard":
-                game_speed = max(MIN_SPEED, game_speed * SPEED_UP_FACTOR)
+                game_speed = max(TOP_SPEED, game_speed * SPEED_UP_FACTOR)
 
         if snake.head.xcor() < -290 or snake.head.xcor() > 290 or snake.head.ycor() < -290 or snake.head.ycor() > 290:
             game_is_on = False
